@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The United States: Earth Processes from Coast to Coast</title>
+  <meta name="description" content="PS 120 Earth Science course website by Caleb Carter: the Earth processes that shape the United States.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+  <style>
+    :root { --cream:#f6f2e9; --ink:#25332e; --muted:#526258; --sage:#dfe7dc; --red:#a64d36; --sky:#dcebf0; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { width:100%; margin:0; color:var(--ink); font-family:'Source Serif Pro',serif; font-size:17px; background:var(--cream); }
+    button, nav, .eyebrow, .site-footer { font-family:'DM Sans',sans-serif; }
+    button:focus-visible, a:focus-visible { outline:3px solid var(--red); outline-offset:4px; }
+    a { color:var(--red); }
+    .site-header { position:sticky; top:0; z-index:1000; background:rgba(246,242,233,.97); border-bottom:1px solid #d7d8ce; backdrop-filter:blur(12px); }
+    .header-inner { max-width:1440px; margin:auto; padding:14px clamp(20px,4vw,64px); display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    .brand { font-family:'DM Sans',sans-serif; font-size:15px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--red); text-decoration:none; white-space:nowrap; }
+    .nav-links { display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:3px; }
+    .nav-link { border:0; border-radius:5px; padding:10px 11px; background:transparent; color:var(--ink); cursor:pointer; font-size:15px; font-weight:600; white-space:nowrap; transition:background .2s,color .2s; }
+    .nav-link:hover { background:var(--sage); }
+    .nav-link[aria-current="page"] { background:var(--ink); color:#fff; }
+    .menu-toggle { display:none; align-items:center; gap:8px; border:1px solid #bac7bd; border-radius:6px; padding:9px 12px; background:transparent; color:var(--ink); font-weight:700; font-size:15px; cursor:pointer; }
+    .menu-toggle svg { width:18px; height:18px; }
+    .page-view[hidden] { display:none !important; }
+    .hero { position:relative; min-height:560px; min-height:66vh; display:flex; align-items:flex-end; overflow:hidden; background:#694b3a; }
+    .hero img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .hero::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(23,30,27,.76),rgba(23,30,27,.14) 78%),linear-gradient(0deg,rgba(23,30,27,.36),transparent 60%); }
+    .hero-content { position:relative; z-index:1; width:100%; max-width:1440px; margin:0 auto; padding:90px clamp(24px,7vw,104px) 76px; color:#fff; }
+    .hero h1 { max-width:850px; margin:0; font-size:clamp(38px,6vw,58px); font-weight:600; line-height:1.08; letter-spacing:-.035em; }
+    .hero-subtitle { margin:22px 0 30px; font-family:'DM Sans',sans-serif; font-weight:600; letter-spacing:.08em; }
+    .explore-button { border:0; border-radius:5px; padding:15px 22px; background:var(--red); color:#fff; cursor:pointer; font-size:16px; font-weight:700; transition:transform .2s,filter .2s; }
+    .explore-button:hover { transform:translateY(-2px); filter:brightness(1.08); }
+    .reading-section { max-width:920px; margin:auto; padding:clamp(56px,8vw,108px) 24px; }
+    .reading-section h2, .reading-section h3, .inner-title { line-height:1.16; letter-spacing:-.025em; }
+    .reading-section h2 { font-size:26px; font-weight:600; margin:0; }
+    .reading-section p { max-width:760px; margin:20px 0 0; line-height:1.75; }
+    .topo { background-image:repeating-radial-gradient(ellipse at 93% 12%,transparent 0 23px,rgba(81,111,96,.075) 24px 25px,transparent 26px 47px); }
+    .inner-header { padding:clamp(65px,8vw,112px) 24px 60px; background:var(--sage); }
+    .inner-header > div { max-width:1120px; margin:auto; }
+    .eyebrow { display:block; margin-bottom:16px; font-size:12px; font-weight:700; letter-spacing:.19em; text-transform:uppercase; color:var(--red); }
+    .inner-title { max-width:920px; margin:0; font-size:clamp(28px,4vw,34px); font-weight:600; }
+    .about-section { padding-top:58px; padding-bottom:15px; }
+    .about-section:last-child { padding-bottom:90px; }
+    .quote-panel { margin:24px 0 0; padding:clamp(25px,5vw,54px); border-left:5px solid var(--red); border-radius:0 7px 7px 0; background:var(--sage); font-size:1.2em; line-height:1.65; }
+    .feature-layout { max-width:1200px; margin:auto; padding:50px 24px 95px; }
+    .feature-photo { width:100%; height:clamp(300px,47vw,570px); object-fit:cover; border-radius:7px; background:#d9ddd5; }
+    .placeholder-panel { max-width:760px; margin:30px 0 0; padding:23px 27px; border-left:4px solid var(--red); background:var(--sky); line-height:1.6; }
+    #us-map { width:100%; height:clamp(340px,48vw,560px); border-radius:7px; background:var(--sky); }
+    .map-caption { margin:12px 0 0; font-size:15px; color:var(--muted); }
+
+    /* Maps section */
+    .section-heading { margin:72px 0 0; font-size:clamp(24px,3vw,30px); font-weight:600; letter-spacing:-.02em; }
+    .map-card { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(24px,4vw,48px); align-items:start; margin-top:40px; padding-top:40px; border-top:1px solid #d7d8ce; }
+    .map-card:first-of-type { border-top:0; }
+    .map-card figure { margin:0; }
+    .map-card img { width:100%; height:auto; display:block; border-radius:7px; background:#fff; border:1px solid #d7d8ce; }
+    .map-card figcaption { margin-top:8px; font-family:'DM Sans',sans-serif; font-size:13px; color:var(--muted); }
+    .map-card .label { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--red); margin:0 0 10px; }
+    .map-card h3 { margin:0; font-size:24px; font-weight:600; line-height:1.2; }
+    .map-card p { margin:14px 0 0; line-height:1.75; }
+    .qa { max-width:860px; }
+    .qa-item { margin-top:36px; }
+    .qa-item h3 { margin:0; font-size:20px; font-weight:600; color:var(--red); line-height:1.35; }
+    .qa-item p { margin:12px 0 0; line-height:1.75; }
+    .cartographer { margin-top:20px; padding:22px 26px; border-left:4px solid var(--red); background:var(--sage); border-radius:0 7px 7px 0; }
+    .cartographer p { margin:0; }
+
+    /* References */
+    .ref-list { list-style:none; padding:0; margin:28px 0 0; }
+    .ref-list li { padding-left:2.2em; text-indent:-2.2em; line-height:1.75; margin-top:16px; overflow-wrap:anywhere; }
+
+    .site-footer { border-top:1px solid #d9d8cd; padding:30px 24px; text-align:center; font-size:15px; letter-spacing:.035em; line-height:1.8; background:var(--sage); }
+    @media (max-width:1100px) {
+      .menu-toggle { display:flex; }
+      .header-inner { flex-wrap:wrap; }
+      .nav-links { display:none; width:100%; flex-direction:column; align-items:stretch; padding:8px 0 4px; }
+      .nav-links.is-open { display:flex; }
+      .nav-link { text-align:left; padding:13px 15px; }
+    }
+    @media (max-width:760px) {
+      .map-card { grid-template-columns:1fr; }
+    }
+    @media (max-width:600px) {
+      .brand { max-width:200px; white-space:normal; line-height:1.35; }
+      .hero { min-height:530px; }
+      .hero-content { padding-bottom:54px; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      html { scroll-behavior:auto; }
+      *, *::before, *::after { transition-duration:.01ms !important; animation-duration:.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#home" class="brand" id="brand-link">Earth Science · PS 120</a>
+      <button type="button" id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation" aria-controls="site-nav" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg><span>Menu</span>
+      </button>
+      <nav id="site-nav" class="nav-links" aria-label="Main navigation">
+        <button type="button" class="nav-link" data-page="home">Home</button>
+        <button type="button" class="nav-link" data-page="about">About</button>
+        <button type="button" class="nav-link" data-page="maps">Maps</button>
+        <button type="button" class="nav-link" data-page="tectonics">Plate Tectonics</button>
+        <button type="button" class="nav-link" data-page="weathering">Weathering</button>
+        <button type="button" class="nav-link" data-page="fluvial">Fluvial Processes</button>
+        <button type="button" class="nav-link" data-page="climate">Climate</button>
+        <button type="button" class="nav-link" data-page="references">References</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- HOME -->
+    <section id="home" class="page-view" aria-labelledby="home-title">
+      <div class="hero">
+        <img src="https://images.pexels.com/photos/2082087/pexels-photo-2082087.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Grand Canyon landscape with layered red rock">
+        <div class="hero-content">
+          <h1 id="home-title" tabindex="-1">The United States: Earth Processes from Coast to Coast</h1>
+          <p class="hero-subtitle">PS 120 Earth Science · Caleb Carter</p>
+          <button type="button" id="explore-button" class="explore-button">Explore the project</button>
+        </div>
+      </div>
+      <div class="topo">
+        <div class="reading-section">
+          <h2>About the United States</h2>
+          <p>The United States stretches across the middle of North America, from the Atlantic Ocean to the Pacific Ocean, and includes Alaska and Hawaii. It has 50 states, its capital is Washington, D.C., and more than 340 million people live there.</p>
+          <p>History and culture: The country declared its independence from Great Britain in 1776 and adopted its Constitution in 1787. Because people have moved here from all over the world, American culture is a mix of many traditions, foods, languages, and religions.</p>
+          <p>Economy: The United States has the largest economy in the world. Its wide range of landscapes supports farming in the Midwest, energy production in Texas and the West, technology in California, and tourism at national parks like the Grand Canyon and Yellowstone.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="page-view" aria-labelledby="about-title" hidden>
+      <div class="inner-header topo"><div>
+        <span class="eyebrow" aria-hidden="true">PS 120 · Earth Science</span>
+        <h1 id="about-title" tabindex="-1" class="inner-title">About This Project</h1>
+      </div></div>
+      <div class="reading-section about-section">
+        <h2>My Ties to the United States</h2>
+        <p>I was born and raised in Prescott, Arizona, a few hours' drive from the Grand Canyon, and I now live in South Jordan, Utah, with my wife and son. For work I install fire sprinkler systems on job sites from Farmington to St. George, so I see a lot of Utah's mountains, valleys, and red rock country up close. I chose the United States because it is the country I know best, and I want to understand the land I live on.</p>
+      </div>
+      <div class="reading-section about-section">
+        <h2>One Interesting Fact About the Physical Geography of the United States</h2>
+        <p>The Grand Canyon in Arizona is about 277 river miles long and up to 6,000 feet deep. The rocks at the bottom are close to 2 billion years old, but the Colorado River carved the canyon itself in only the past five or six million years.</p>
+      </div>
+      <div class="reading-section about-section">
+        <h2>How the Earth Testifies of a Creator</h2>
+        <blockquote class="quote-panel">“All things denote there is a God; yea, even the earth, and all things that are upon the face of it, yea, and its motion, yea, and also all the planets which move in their regular form do witness that there is a Supreme Creator” (Alma 30:44).</blockquote>
+        <p>When I look at the layers of the Grand Canyon or the mountains around my home, I see order and design. The Earth turns at a steady pace, the seasons come back every year, and water, wind, and time shape the land in ways we can study and predict. To me, that kind of order points to a Creator who set these processes in motion and who cares about the people who live on the Earth.</p>
+      </div>
+    </section>
+
+    <!-- MAPS -->
+    <section id="maps" class="page-view" aria-labelledby="maps-title" hidden>
+      <div class="inner-header topo"><div>
+        <span class="eyebrow" aria-hidden="true">Week 2</span>
+        <h1 id="maps-title" tabindex="-1" class="inner-title">Maps, Location, and Cartographers</h1>
+      </div></div>
+      <div class="feature-layout">
+        <div id="us-map" role="region" aria-label="Interactive map of the United States"></div>
+        <p class="map-caption">Interactive map: drag and use the + and − buttons to explore the United States.</p>
+
+        <h2 class="section-heading">Four Maps of the United States</h2>
+
+        <article class="map-card">
+          <figure>
+            <img src="https://tile.loc.gov/image-services/iiif/service:gmd:gmd3:g3200:g3200:ct000725/full/pct:12.5/0/default.jpg" alt="Martin Waldseemüller's 1507 world map, the first map to use the name America" loading="lazy">
+            <figcaption>Image: Library of Congress</figcaption>
+          </figure>
+          <div>
+            <p class="label">Map 1 · Ancient map</p>
+            <h3>The Waldseemüller World Map (1507)</h3>
+            <p>This German world map by Martin Waldseemüller is the first known map to use the name "America" for the New World. The Library of Congress calls it "America's birth certificate," and it is on permanent display in the Thomas Jefferson Building in Washington, D.C. (Library of Congress, 2001).</p>
+          </div>
+        </article>
+
+        <article class="map-card">
+          <figure>
+            <img src="https://blogs.loc.gov/loc/files/2014/06/buell_enlarge.jpg" alt="Abel Buell's 1784 map of the United States" loading="lazy">
+            <figcaption>Image: Library of Congress (Maloney, 2014)</figcaption>
+          </figure>
+          <div>
+            <p class="label">Map 2 · Early national map</p>
+            <h3>Abel Buell's Map of the United States (1784)</h3>
+            <p>Printed in 1784, just months after the Treaty of Paris ended the Revolutionary War, this was the first map of the new United States drawn and printed in America by an American. It shows the young country stretching from the Atlantic coast to the Mississippi River ("Even in 1784 America," 2014).</p>
+          </div>
+        </article>
+
+        <article class="map-card">
+          <figure>
+            <img src="https://www.census.gov/content/census/en/programs-surveys/sis/resources/maps/territorial-acquisitions/_jcr_content/root/responsivegrid/textimage.textthumbnail.jpg/1678290567340.jpg" alt="Map of the territorial acquisitions of the United States from 1783 onward" loading="lazy">
+            <figcaption>Image: U.S. Census Bureau · <a href="https://www2.census.gov/programs-surveys/sis/resources/territorial-acquisitions.pdf" target="_blank" rel="noopener">view full-size map (PDF)</a></figcaption>
+          </figure>
+          <div>
+            <p class="label">Map 3 · Boundary changes over time</p>
+            <h3>Territorial Acquisitions of the United States</h3>
+            <p>This map shows how the country's boundaries grew over time, from the original territory of 1783 through the Louisiana Purchase (1803), the annexation of Texas (1845), the Oregon Territory (1846), the Mexican Cession (1848), the Gadsden Purchase (1853), Alaska (1867) and Hawaii (1898) (U.S. Census Bureau, n.d.).</p>
+          </div>
+        </article>
+
+        <article class="map-card">
+          <figure>
+            <img src="https://dlab.epfl.ch/wikispeedia/wpcd/images/199/19931.png" alt="USGS map of the United States in the Albers equal-area conic projection" loading="lazy">
+            <figcaption>Image: U.S. Geological Survey · <a href="https://pubs.usgs.gov/of/1983/0850/plate-1.pdf" target="_blank" rel="noopener">view full fifty-state map (PDF)</a></figcaption>
+          </figure>
+          <div>
+            <p class="label">Map 4 · Modern map</p>
+            <h3>Modern Map, Albers Conic Equal-Area Projection</h3>
+            <p>This modern U.S. Geological Survey map uses the Albers conic equal-area projection, which keeps the sizes of states accurate and is commonly used for maps of the United States. It also shows the country's position on the North American continent (Alpha, 1983).</p>
+          </div>
+        </article>
+
+        <h2 class="section-heading">Questions</h2>
+        <div class="qa">
+          <div class="qa-item">
+            <h3>1. On which continent and in what general area is your country located?</h3>
+            <p>The United States is located on the continent of North America. The 48 contiguous states lie in the middle of the continent, between Canada to the north and Mexico to the south, with the Atlantic Ocean to the east and the Pacific Ocean to the west. Alaska sits in the far northwest of the continent, bordering Canada, and Hawaii is an island chain in the central Pacific Ocean.</p>
+          </div>
+          <div class="qa-item">
+            <h3>2. What is the latitudinal range of your country?</h3>
+            <p>The 48 contiguous states range from about 24°32' N at Key West, Florida, to about 49°23' N at the Lake of the Woods in Minnesota. Including all 50 states, the range runs from 18°55' N at Ka Lae, Hawaii, to 71°23' N at Point Barrow, Alaska (U.S. Geological Survey, n.d.).</p>
+          </div>
+          <div class="qa-item">
+            <h3>3. During what time periods or years has your country existed?</h3>
+            <p>The United States declared its independence from Great Britain on July 4, 1776. Great Britain recognized its independence in the Treaty of Paris in 1783, and the current federal government began under the Constitution in 1789. The country has existed continuously from 1776 to the present, growing from 13 states to 50.</p>
+          </div>
+          <div class="qa-item">
+            <h3>4. Are there any famous cartographers from your country or cartographers from other countries who influenced map making in your country?</h3>
+            <div class="cartographer">
+              <p><strong>Martin Waldseemüller (German, about 1470–1520):</strong> Waldseemüller was a German cartographer whose 1507 world map was the first to label the New World "America." He named it after the explorer Amerigo Vespucci, mistakenly believing Vespucci, rather than Christopher Columbus, had discovered it. His map gave the continent, and eventually the country, its name. The Library of Congress acquired the only known surviving copy, and it is now on permanent display in Washington, D.C. (Library of Congress, 2001). <em>See Map 1 above.</em></p>
+            </div>
+            <div class="cartographer">
+              <p><strong>Abel Buell (American engraver):</strong> Buell was a Connecticut engraver, inventor and metalsmith. As a young man he was convicted of counterfeiting and punished by having part of his ear cut off and his forehead branded. His biggest cartographic accomplishment was his 1784 map, the first map of the United States made and printed in America by an American, completed just six months after the Treaty of Paris. Only seven original copies are known to survive, and the best-preserved one is held by the Library of Congress ("Even in 1784 America," 2014). <em>See Map 2 above.</em></p>
+            </div>
+          </div>
+        </div>
+        <p class="placeholder-panel">Full APA citations for every source on this page are on the <a href="#references">References</a> page.</p>
+      </div>
+    </section>
+
+    <!-- PLATE TECTONICS -->
+    <section id="tectonics" class="page-view" aria-labelledby="tectonics-title" hidden>
+      <div class="inner-header topo"><div>
+        <h1 id="tectonics-title" tabindex="-1" class="inner-title">Plate Tectonics, Earthquakes, and Volcanoes</h1>
+      </div></div>
+      <div class="feature-layout">
+        <img class="feature-photo" loading="lazy" src="https://images.pexels.com/photos/46160/volcano-mount-st-helens-washington-eruption-46160.jpeg?auto=compress&cs=tinysrgb&w=1280" alt="Mountainous volcanic landscape" onerror="this.style.display='none'">
+        <p class="placeholder-panel">Research for this section is coming soon.</p>
+      </div>
+    </section>
+
+    <!-- WEATHERING -->
+    <section id="weathering" class="page-view" aria-labelledby="weathering-title" hidden>
+      <div class="inner-header topo"><div>
+        <h1 id="weathering-title" tabindex="-1" class="inner-title">Weathering, Mass Wasting, and Erosion</h1>
+      </div></div>
+      <div class="feature-layout">
+        <img class="feature-photo" loading="lazy" src="https://images.pexels.com/photos/459203/pexels-photo-459203.jpeg?auto=compress&cs=tinysrgb&w=1280" alt="Stone bridge over a river in a forested gorge" onerror="this.style.display='none'">
+        <p class="placeholder-panel">Research for this section is coming soon.</p>
+      </div>
+    </section>
+
+    <!-- FLUVIAL -->
+    <section id="fluvial" class="page-view" aria-labelledby="fluvial-title" hidden>
+      <div class="inner-header topo"><div>
+        <h1 id="fluvial-title" tabindex="-1" class="inner-title">Fluvial Processes, Oceans, and Coastlines</h1>
+      </div></div>
+      <div class="feature-layout">
+        <img class="feature-photo" loading="lazy" src="https://images.pexels.com/photos/1659438/pexels-photo-1659438.jpeg?auto=compress&cs=tinysrgb&w=1280" alt="Coastal cliff above the ocean and clouds" onerror="this.style.display='none'">
+        <p class="placeholder-panel">Research for this section is coming soon.</p>
+      </div>
+    </section>
+
+    <!-- CLIMATE -->
+    <section id="climate" class="page-view" aria-labelledby="climate-title" hidden>
+      <div class="inner-header topo"><div>
+        <h1 id="climate-title" tabindex="-1" class="inner-title">Climate Controls, Biomes, and Climate Change</h1>
+      </div></div>
+      <div class="feature-layout">
+        <img class="feature-photo" loading="lazy" src="https://images.pexels.com/photos/1005417/pexels-photo-1005417.jpeg?auto=compress&cs=tinysrgb&w=1280" alt="Palm trees along a tropical coastline" onerror="this.style.display='none'">
+        <p class="placeholder-panel">Research for this section is coming soon.</p>
+      </div>
+    </section>
+
+    <!-- REFERENCES -->
+    <section id="references" class="page-view" aria-labelledby="references-title" hidden>
+      <div class="inner-header topo"><div>
+        <h1 id="references-title" tabindex="-1" class="inner-title">References</h1>
+      </div></div>
+      <div class="reading-section">
+        <p>Sources are listed in alphabetical order in APA 7th edition format and updated each week.</p>
+        <ul class="ref-list">
+          <li>Alpha, T. R. (1983). <em>Albers conic equal-area fifty-state base map of the United States</em> (Open-File Report 83-850). U.S. Geological Survey. https://doi.org/10.3133/ofr83850</li>
+          <li>Even in 1784 America, it was impossible to make a map without infuriating someone. (2014). <em>Smithsonian Magazine</em>. https://www.smithsonianmag.com/history/even-1784-america-it-was-impossible-make-map-without-infuriating-someone-180952700/</li>
+          <li>Library of Congress. (2001, July 23). <em>Library of Congress acquires only known copy of 1507 world map compiled by Martin Waldseemüller</em> [Press release]. https://www.loc.gov/item/prn-01-093/</li>
+          <li>Maloney, W. (2014, June 11). <em>Rare map on display at Library scored some firsts</em>. Library of Congress Blog. https://blogs.loc.gov/loc/2014/06/rare-map-on-display-at-library-scored-some-firsts/</li>
+          <li>National Park Service. (n.d.). <em>Frequently asked questions</em>. Grand Canyon National Park. https://www.nps.gov/grca/faqs.htm</li>
+          <li>U.S. Census Bureau. (n.d.). <em>Territorial acquisitions map</em>. https://www.census.gov/programs-surveys/sis/resources/maps/territorial-acquisitions.html</li>
+          <li>U.S. Geological Survey. (n.d.). <em>Distances, extreme points, geographic centers</em>. https://www.usgs.gov/educational-resources/distances-extreme-points-geographic-centers</li>
+          <li>Waldseemüller, M. (1507). <em>Universalis cosmographia secundum Ptholomaei traditionem et Americi Vespucii aliorumque lustrationes</em> [Map]. Library of Congress. https://www.loc.gov/resource/g3200.ct000725</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>The United States: Earth Processes from Coast to Coast</span>
+    <span aria-hidden="true"> · </span>
+    <span>PS 120 Earth Science · Caleb Carter</span>
+  </footer>
+
+  <script>
+    const pages = ['home','about','maps','tectonics','weathering','fluvial','climate','references'];
+    const nav = document.getElementById('site-nav');
+    const menuToggle = document.getElementById('menu-toggle');
+    let map;
+
+    function closeMenu() {
+      nav.classList.remove('is-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+
+    function showPage(page, focusHeading = true) {
+      if (!pages.includes(page)) page = 'home';
+      pages.forEach(id => { document.getElementById(id).hidden = id !== page; });
+      document.querySelectorAll('.nav-link').forEach(button => {
+        if (button.dataset.page === page) button.setAttribute('aria-current', 'page');
+        else button.removeAttribute('aria-current');
+      });
+      closeMenu();
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      if (focusHeading) document.getElementById(page + '-title').focus({ preventScroll: true });
+      if (page === 'maps') {
+        if (!map && window.L) {
+          map = L.map('us-map', { scrollWheelZoom: false }).setView([39.5, -98.35], 4);
+          map.attributionControl.setPrefix(false);
+          L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors'
+          }).addTo(map);
+        }
+        if (map) setTimeout(() => map.invalidateSize(), 40);
+      }
+    }
+
+    document.querySelectorAll('.nav-link').forEach(button => {
+      button.addEventListener('click', () => { history.replaceState(null, '', '#' + button.dataset.page); showPage(button.dataset.page); });
+    });
+    document.getElementById('brand-link').addEventListener('click', event => {
+      event.preventDefault();
+      history.replaceState(null, '', '#home');
+      showPage('home');
+    });
+    document.getElementById('explore-button').addEventListener('click', () => {
+      history.replaceState(null, '', '#about');
+      showPage('about');
+    });
+    menuToggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('is-open');
+      menuToggle.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && nav.classList.contains('is-open')) {
+        closeMenu();
+        menuToggle.focus();
+      }
+    });
+    window.addEventListener('hashchange', () => showPage(location.hash.slice(1)));
+    showPage(location.hash.slice(1), false);
+  </script>
+</body>
+</html>
