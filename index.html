@@ -70,9 +70,60 @@
     .cartographer { margin-top:20px; padding:22px 26px; border-left:4px solid var(--red); background:var(--sage); border-radius:0 7px 7px 0; }
     .cartographer p { margin:0; }
 
+    /* Week 3: tectonics page */
+    .lede { max-width:820px; margin:34px 0 0; font-size:1.12em; line-height:1.75; }
+    .topic-jump { display:flex; flex-wrap:wrap; gap:8px; margin-top:26px; }
+    .topic-jump button { border:1px solid #bac7bd; border-radius:999px; padding:9px 15px; background:#fff; color:var(--ink); font-size:14px; font-weight:600; cursor:pointer; transition:background .2s,border-color .2s; }
+    .topic-jump button:hover { background:var(--sage); border-color:var(--sage); }
+    .topic { margin-top:80px; padding-top:44px; border-top:1px solid #d7d8ce; scroll-margin-top:90px; }
+    .topic-num { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--red); margin:0 0 10px; }
+    .topic > h2 { margin:0; font-size:clamp(26px,3.2vw,32px); font-weight:600; letter-spacing:-.02em; line-height:1.15; }
+    .topic-grid { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); gap:clamp(24px,4vw,52px); align-items:start; margin-top:30px; }
+    .topic-grid.flip { grid-template-columns:minmax(0,1fr) minmax(0,1.15fr); }
+    .topic h3 { margin:30px 0 0; font-size:20px; font-weight:600; color:var(--red); line-height:1.35; }
+    .topic h3:first-child { margin-top:0; }
+    .topic p { margin:12px 0 0; line-height:1.75; }
+    .topic ul { margin:12px 0 0; padding-left:1.2em; line-height:1.7; }
+    .topic li { margin-top:8px; }
+    .fig { margin:0; }
+    .fig img { width:100%; height:auto; display:block; border-radius:7px; background:#fff; border:1px solid #d7d8ce; }
+    .fig figcaption { margin-top:8px; font-family:'DM Sans',sans-serif; font-size:13px; line-height:1.5; color:var(--muted); }
+    .fig + .fig, .fig + .chart, .chart + .fig, .chart + .chart, .callout + .fig, .fig + .callout, .chart + .callout { margin-top:28px; }
+    .callout { padding:20px 24px; border-left:4px solid var(--red); background:var(--sage); border-radius:0 7px 7px 0; }
+    .callout p:first-child { margin-top:0; }
+    .callout strong { font-family:'DM Sans',sans-serif; font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--red); }
+    .stat-row { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin-top:24px; }
+    .stat { padding:18px 18px 16px; background:#fff; border:1px solid #d7d8ce; border-radius:7px; }
+    .stat-num { font-family:'DM Sans',sans-serif; font-size:clamp(24px,3vw,30px); font-weight:700; color:var(--ink); line-height:1.1; }
+    .stat-label { margin-top:6px; font-family:'DM Sans',sans-serif; font-size:13px; line-height:1.45; color:var(--muted); }
+
+    /* Bar charts */
+    .chart { padding:22px 22px 16px; background:#fff; border:1px solid #d7d8ce; border-radius:7px; font-family:'DM Sans',sans-serif; }
+    .chart-title { margin:0; font-size:15px; font-weight:700; color:var(--ink); }
+    .chart-sub { margin:4px 0 14px; font-size:13px; color:var(--muted); }
+    .bar-row { position:relative; display:grid; grid-template-columns:minmax(110px,40%) 1fr; align-items:center; gap:12px; padding:7px 0; cursor:default; }
+    .bar-label { font-size:13px; line-height:1.3; color:var(--ink); }
+    .bar-track { position:relative; height:22px; border-left:1px solid #cfd3c9; }
+    .bar { height:100%; background:var(--red); border-radius:0 4px 4px 0; transition:filter .15s; }
+    .bar-row:hover .bar { filter:brightness(.85); }
+    .bar-val { position:absolute; top:50%; transform:translateY(-50%); margin-left:8px; font-size:13px; font-weight:600; color:var(--ink); white-space:nowrap; }
+    .bar-row .tip { position:absolute; right:0; bottom:calc(100% - 4px); z-index:5; max-width:260px; padding:8px 10px; border-radius:6px; background:var(--ink); color:#fff; font-size:12px; line-height:1.45; opacity:0; pointer-events:none; transition:opacity .15s; }
+    .bar-row:hover .tip, .bar-row:focus .tip { opacity:1; }
+    .chart-note { margin:12px 0 0; font-size:12px; color:var(--muted); line-height:1.5; }
+
+    .video-wrap { position:relative; width:100%; aspect-ratio:16/9; border-radius:7px; overflow:hidden; background:#000; }
+    .video-wrap iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+    .volcano-table { width:100%; margin-top:22px; border-collapse:collapse; font-size:15px; }
+    .volcano-table th, .volcano-table td { padding:11px 12px; border-bottom:1px solid #d7d8ce; text-align:left; vertical-align:top; line-height:1.5; }
+    .volcano-table th { font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--red); }
+    .volcano-table td:first-child { font-weight:600; white-space:nowrap; }
+    .table-scroll { overflow-x:auto; }
+    .ai-note { margin-top:70px; }
+
     /* References */
     .ref-list { list-style:none; padding:0; margin:28px 0 0; }
     .ref-list li { padding-left:2.2em; text-indent:-2.2em; line-height:1.75; margin-top:16px; overflow-wrap:anywhere; }
+    .ref-group { margin:44px 0 0; font-size:20px; font-weight:600; }
 
     .site-footer { border-top:1px solid #d9d8cd; padding:30px 24px; text-align:center; font-size:15px; letter-spacing:.035em; line-height:1.8; background:var(--sage); }
     @media (max-width:1100px) {
@@ -82,6 +133,10 @@
       .nav-links.is-open { display:flex; }
       .nav-link { text-align:left; padding:13px 15px; }
     }
+    @media (max-width:860px) {
+      .topic-grid, .topic-grid.flip { grid-template-columns:1fr; }
+      .stat-row { grid-template-columns:1fr; }
+    }
     @media (max-width:760px) {
       .map-card { grid-template-columns:1fr; }
     }
@@ -89,6 +144,7 @@
       .brand { max-width:200px; white-space:normal; line-height:1.35; }
       .hero { min-height:530px; }
       .hero-content { padding-bottom:54px; }
+      .bar-row { grid-template-columns:minmax(90px,38%) 1fr; }
     }
     @media (prefers-reduced-motion:reduce) {
       html { scroll-behavior:auto; }
@@ -226,7 +282,7 @@
           </div>
           <div class="qa-item">
             <h3>2. What is the latitudinal range of your country?</h3>
-            <p>The 48 contiguous states range from about 24°32' N at Key West, Florida, to about 49°23' N at the Lake of the Woods in Minnesota. Including all 50 states, the range runs from 18°55' N at Ka Lae, Hawaii, to 71°23' N at Point Barrow, Alaska (U.S. Geological Survey, n.d.).</p>
+            <p>The 48 contiguous states range from about 24°32' N at Key West, Florida, to about 49°23' N at the Lake of the Woods in Minnesota. Including all 50 states, the range runs from 18°55' N at Ka Lae, Hawaii, to 71°23' N at Point Barrow, Alaska (U.S. Geological Survey, n.d.-a).</p>
           </div>
           <div class="qa-item">
             <h3>3. During what time periods or years has your country existed?</h3>
@@ -246,14 +302,219 @@
       </div>
     </section>
 
-    <!-- PLATE TECTONICS -->
+    <!-- PLATE TECTONICS (Week 3) -->
     <section id="tectonics" class="page-view" aria-labelledby="tectonics-title" hidden>
       <div class="inner-header topo"><div>
+        <span class="eyebrow" aria-hidden="true">Week 3</span>
         <h1 id="tectonics-title" tabindex="-1" class="inner-title">Plate Tectonics, Earthquakes, and Volcanoes</h1>
       </div></div>
       <div class="feature-layout">
         <img class="feature-photo" loading="lazy" src="https://images.unsplash.com/photo-1641856029736-aa87397dc2dc?auto=format&fit=crop&w=1280&q=80" alt="Mount St. Helens, a volcano in Washington State" onerror="this.style.display='none'">
-        <p class="placeholder-panel">Research for this section is coming soon.</p>
+        <p class="lede">The United States sits almost entirely on the North American Plate, but its western edge, Alaska, and Hawaii are some of the most geologically active places on Earth. Plate movement built the country's mountains, gave it valuable rocks and minerals, and still causes the earthquakes and eruptions people prepare for today, including along the Wasatch Fault a few miles from my home in South Jordan.</p>
+        <div class="topic-jump" aria-label="Jump to a topic">
+          <button type="button" data-scroll="t-plates">Plates &amp; disasters</button>
+          <button type="button" data-scroll="t-minerals">Rocks &amp; minerals</button>
+          <button type="button" data-scroll="t-quakes">Earthquakes</button>
+          <button type="button" data-scroll="t-mountains">Mountain ranges</button>
+          <button type="button" data-scroll="t-volcanoes">Volcanoes</button>
+        </div>
+
+        <!-- 1. PLATES -->
+        <article class="topic" id="t-plates">
+          <p class="topic-num">Topic 1</p>
+          <h2>Tectonic Plates and Natural Disasters</h2>
+          <div class="topic-grid">
+            <div>
+              <h3>Is the United States near plate boundaries?</h3>
+              <p>Yes, mostly in the West. The East Coast is in the middle of the North American Plate, far from any boundary, which is why it has few big earthquakes or volcanoes. The active boundaries are:</p>
+              <ul>
+                <li><strong>Transform boundary (California):</strong> The San Andreas Fault is where a thin strip of western California, riding on the Pacific Plate, slides north-northwest past the rest of North America. The boundary is really a zone of faults about 60 miles wide (National Park Service, n.d.-c).</li>
+                <li><strong>Convergent boundary (Pacific Northwest):</strong> Along the Cascadia Subduction Zone, an oceanic plate sinks beneath the North American Plate from northern California to British Columbia. As the plate sinks it heats up and releases fluids and melt, which feed the Cascade volcanoes ("Scientists unravel," n.d.).</li>
+                <li><strong>Convergent boundary (Alaska):</strong> In southern Alaska the Pacific Plate subducts beneath the North American Plate, the source of the 1964 Great Alaska Earthquake (U.S. Geological Survey, 2014).</li>
+                <li><strong>Hotspots, not boundaries:</strong> Hawaii and Yellowstone sit over hotspots inside plates. Hawaii is in the middle of the Pacific Plate, which is why its volcanoes are far from any boundary.</li>
+              </ul>
+              <h3>Does the U.S. have earthquakes, volcanoes, and tsunamis?</h3>
+              <p>Yes, all three. A few major examples:</p>
+              <ul>
+                <li><strong>Tsunami, 1700:</strong> A magnitude ~9 Cascadia earthquake sent a tsunami across the Pacific that damaged villages in Japan (U.S. Geological Survey, n.d.-c).</li>
+                <li><strong>Earthquake and tsunami, 1964:</strong> The magnitude 9.2 Alaska earthquake killed 128 people, 113 of them from the tsunami (U.S. Geological Survey, n.d.-d).</li>
+                <li><strong>Volcano, 1980:</strong> Mount St. Helens killed 57 people (U.S. Geological Survey, 2005).</li>
+                <li><strong>Volcano, 2018:</strong> Kīlauea's lava destroyed 700 homes in Hawaii (National Park Service, n.d.-a).</li>
+              </ul>
+            </div>
+            <div>
+              <figure class="fig">
+                <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Plates_tect2_en.svg?width=1000" alt="World map of the major tectonic plates, showing the North American, Pacific, and Juan de Fuca plates around the United States" loading="lazy" onerror="this.closest('figure').style.display='none'">
+                <figcaption>The major tectonic plates. The U.S. is on the North American Plate, which meets the Pacific and Juan de Fuca plates along the West Coast and Alaska. Image: U.S. Geological Survey, public domain, via Wikimedia Commons.</figcaption>
+              </figure>
+              <figure class="fig">
+                <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Kluft-photo-Carrizo-Plain-Nov-2007-Img_0327.jpg?width=1000" alt="Aerial photo of the San Andreas Fault cutting across the Carrizo Plain in California" loading="lazy" onerror="this.closest('figure').style.display='none'">
+                <figcaption>The San Andreas Fault crossing California's Carrizo Plain, where the Pacific and North American plates slide past each other. Photo: Ikluft, CC BY-SA 4.0, via Wikimedia Commons.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. MINERALS -->
+        <article class="topic" id="t-minerals">
+          <p class="topic-num">Topic 2</p>
+          <h2>Rock and Mineral Resources</h2>
+          <div class="stat-row">
+            <div class="stat"><div class="stat-num">$112 billion</div><div class="stat-label">Value of U.S. nonfuel mineral production in 2025, up 5.6% (U.S. Geological Survey, 2026)</div></div>
+            <div class="stat"><div class="stat-num">$4.09 trillion</div><div class="stat-label">Size of U.S. industries that rely on minerals, more than one-eighth of the economy (U.S. Geological Survey, 2026)</div></div>
+            <div class="stat"><div class="stat-num">41%</div><div class="stat-label">Share of all U.S. coal mined in Wyoming in 2022 (U.S. Energy Information Administration, n.d.)</div></div>
+          </div>
+          <div class="topic-grid">
+            <div>
+              <h3>What rocks and minerals are found here, and how do they help the economy?</h3>
+              <p>The United States mines a huge variety of resources. The most valuable nonfuel product is not gold but crushed stone, the rock used in roads, concrete, and buildings. It was worth $26.8 billion in 2025, about 24% of all nonfuel mineral value (American Ceramic Society, 2026). Nevada was the top mineral-producing state for the second year in a row, mostly from gold, and Arizona passed Texas for second place thanks to copper, molybdenum, gold, and silver (U.S. Geological Survey, 2026). Wyoming's Powder River Basin produces the most coal of any state (U.S. Energy Information Administration, n.d.).</p>
+              <p>Utah is a big part of this story. The Bingham Canyon Mine in the Oquirrh Mountains, just west of where I live, is the largest open-pit copper mine in the world, about 2.5 miles across and half a mile deep (Notarianni, n.d.). Its operator, Rio Tinto Kennecott, expects to produce close to one million tonnes of refined copper from 2026 to 2032 (Rio Tinto Kennecott, n.d.).</p>
+              <h3>How do minerals affect jobs and exports? Where are they exported to?</h3>
+              <p>Mining supports jobs directly at mines, smelters, and refineries, and indirectly in the construction, manufacturing, and technology industries that use the materials. In 2023 the United States exported $361 billion in mineral products (a category that includes fuels as well as ores and stone). The top buyers were Mexico, Canada, China, the Netherlands, and the United Kingdom (Observatory of Economic Complexity, n.d.).</p>
+              <h3>Are there other impacts?</h3>
+              <p><strong>Economic:</strong> The U.S. still depends on imports for many minerals. It relied on China as a major import source for 14 of the 33 critical minerals it imports most, and China restricts exports of 14 minerals to the U.S. (U.S. Geological Survey, 2026). That makes supply chains for things like batteries and electronics a national security issue.</p>
+              <p><strong>Environmental:</strong> Mining can pollute water. Historic mining in the Oquirrh Mountains created two groundwater plumes under southwest Salt Lake County with sulfate levels above Utah's drinking water standards, and the state has worked since 1986 to clean them up (Utah Department of Environmental Quality, n.d.). Those plumes sit under cities like South Jordan, so this impact is close to home for me.</p>
+            </div>
+            <div>
+              <figure class="fig">
+                <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Bingham_Canyon_April_2005.jpg?width=1000" alt="The terraced open pit of the Bingham Canyon copper mine in Utah" loading="lazy" onerror="this.closest('figure').style.display='none'">
+                <figcaption>Bingham Canyon Mine, Utah, the world's largest open-pit copper mine. Photo via Wikimedia Commons.</figcaption>
+              </figure>
+              <div class="chart" role="figure" aria-label="Bar chart of share of U.S. coal production by state in 2022">
+                <p class="chart-title">Where U.S. coal comes from</p>
+                <p class="chart-sub">Share of total U.S. coal production by state, 2022</p>
+                <div class="bar-row" tabindex="0"><span class="bar-label">Wyoming</span><div class="bar-track"><div class="bar" style="width:66%"></div><span class="bar-val" style="left:66%">41%</span></div><span class="tip">Wyoming: 41% of U.S. coal, mostly from the Powder River Basin</span></div>
+                <div class="bar-row" tabindex="0"><span class="bar-label">West Virginia</span><div class="bar-track"><div class="bar" style="width:22.5%"></div><span class="bar-val" style="left:22.5%">14%</span></div><span class="tip">West Virginia: 14%</span></div>
+                <div class="bar-row" tabindex="0"><span class="bar-label">Pennsylvania</span><div class="bar-track"><div class="bar" style="width:11.3%"></div><span class="bar-val" style="left:11.3%">7%</span></div><span class="tip">Pennsylvania: 7%</span></div>
+                <div class="bar-row" tabindex="0"><span class="bar-label">Illinois</span><div class="bar-track"><div class="bar" style="width:9.7%"></div><span class="bar-val" style="left:9.7%">6%</span></div><span class="tip">Illinois: 6%</span></div>
+                <div class="bar-row" tabindex="0"><span class="bar-label">Kentucky</span><div class="bar-track"><div class="bar" style="width:8.1%"></div><span class="bar-val" style="left:8.1%">5%</span></div><span class="tip">Kentucky: 5%</span></div>
+                <div class="bar-row" tabindex="0"><span class="bar-label">All other states</span><div class="bar-track"><div class="bar" style="width:43.5%"></div><span class="bar-val" style="left:43.5%">27%</span></div><span class="tip">All other coal-producing states combined: 27%</span></div>
+                <p class="chart-note">Source: U.S. Energy Information Administration (n.d.). Chart by Caleb Carter.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. EARTHQUAKES -->
+        <article class="topic" id="t-quakes">
+          <p class="topic-num">Topic 3</p>
+          <h2>Earthquakes</h2>
+          <div class="topic-grid flip">
+            <div>
+              <div class="chart" role="figure" aria-label="Bar chart comparing magnitudes of major U.S. earthquakes">
+                <p class="chart-title">Major U.S. earthquakes by magnitude</p>
+                <p class="chart-sub">Moment magnitude. Each whole step is about 32 times more energy.</p>
+                <div class="bar-row" tabindex="0"><span class="bar-label">Great Alaska, 1964</span><div class="bar-track"><div class="bar" style="width:76.7%"></div><span class="bar-val" style="left:76.7%">9.2</span></div><span class="tip">March 27, 1964 · M9.2 · largest earthquake in U.S. history</span></div>
+                <div class="bar-row" tabindex="0"><span class="bar-label">Cascadia, 1700</span><div class="bar-track"><div class="bar" style="width:75%"></div><span class="bar-val" style="left:75%">~9</span></div><span class="tip">January 26, 1700 · about M9 · tsunami reached Japan</span></div>
+                <div class="bar-row" tabindex="0"><span class="bar-label">San Francisco, 1906</span><div class="bar-track"><div class="bar" style="width:65%"></div><span class="bar-val" style="left:65%">7.8</span></div><span class="tip">April 18, 1906 · M7.8 · at least 3,000 deaths</span></div>
+                <div class="bar-row" tabindex="0"><span class="bar-label">Magna, Utah, 2020</span><div class="bar-track"><div class="bar" style="width:47.5%"></div><span class="bar-val" style="left:47.5%">5.7</span></div><span class="tip">March 18, 2020 · M5.7 · largest on the Wasatch Front since 1847</span></div>
+                <p class="chart-note">Sources: U.S. Geological Survey (2006, n.d.-c, n.d.-d); Utah Geological Survey (n.d.). Chart by Caleb Carter.</p>
+              </div>
+              <div class="callout">
+                <p><strong>Close to home</strong></p>
+                <p>I remember the Magna earthquake. It hit at 7:09 a.m. on March 18, 2020, and was the largest earthquake along the Wasatch Front since pioneers arrived in 1847 (Utah Geological Survey, n.d.). It was a reminder that the "Big One" on the Wasatch Fault is a real risk for families like mine.</p>
+              </div>
+            </div>
+            <div>
+              <h3>Does the U.S. experience significant earthquakes?</h3>
+              <p>Yes. Earthquakes are most common in California, the Pacific Northwest, Alaska, Hawaii, and along the Wasatch Front in Utah. Historical examples:</p>
+              <ul>
+                <li><strong>1700 Cascadia earthquake:</strong> A magnitude ~9 quake on the Cascadia Subduction Zone. There were no written records in America yet, but the tsunami it created crossed the Pacific and damaged coastal villages in Japan, which is how scientists dated it (U.S. Geological Survey, n.d.-c).</li>
+                <li><strong>1906 San Francisco earthquake:</strong> A magnitude 7.8 rupture along nearly 300 miles of the San Andreas Fault. Shaking and fire destroyed almost 5 square miles of the city, killed at least 3,000 people, and left 225,000 homeless (U.S. Geological Survey, 2006).</li>
+                <li><strong>1964 Great Alaska Earthquake:</strong> At magnitude 9.2, it is the largest recorded earthquake in U.S. history and the second-largest ever recorded worldwide (U.S. Geological Survey, 2014). It and its tsunami took 128 lives (U.S. Geological Survey, n.d.-d).</li>
+                <li><strong>2020 Magna, Utah earthquake:</strong> A magnitude 5.7 quake near Salt Lake City (Utah Geological Survey, n.d.).</li>
+              </ul>
+              <h3>What is the government doing to help citizens prepare?</h3>
+              <ul>
+                <li><strong>National program:</strong> Congress created the National Earthquake Hazards Reduction Program (NEHRP) in 1977. Under it, FEMA develops risk-reduction tools and supports earthquake-resistant building codes (Federal Emergency Management Agency, 2021).</li>
+                <li><strong>Early warning:</strong> The USGS ShakeAlert system can send phone alerts seconds before shaking arrives. It now covers more than 50 million people in California, Oregon, and Washington, and it can also automatically slow trains and open firehouse doors (U.S. Department of the Interior, 2021).</li>
+                <li><strong>Drills:</strong> More than 19 million people practiced "Drop, Cover, and Hold On" during the 2024 Great ShakeOut drill. Utah holds its own Great Utah ShakeOut (Federal Emergency Management Agency, 2024).</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. MOUNTAINS -->
+        <article class="topic" id="t-mountains">
+          <p class="topic-num">Topic 4</p>
+          <h2>Mountain Ranges</h2>
+          <div class="topic-grid">
+            <div>
+              <h3>Which major mountain ranges are in the U.S.?</h3>
+              <ul>
+                <li><strong>Rocky Mountains:</strong> Stretch more than 3,000 miles from Canada to New Mexico and form the Continental Divide, the line that decides whether water flows to the Atlantic or the Pacific. The highest peak is Mount Elbert in Colorado at 14,440 feet ("Rocky Mountains," n.d.). The Wasatch Range above Salt Lake City is part of the Rockies' western edge and was lifted along the Wasatch Fault.</li>
+                <li><strong>Cascade Range:</strong> An 800-mile chain of volcanoes from British Columbia to northern California, built by subduction ("Scientists unravel," n.d.). These are young, steep, snow-covered stratovolcanoes. The tallest is Mount Rainier at 14,410 feet (4,392 m) ("Climbing the occasionally cataclysmic Cascades," n.d.).</li>
+                <li><strong>Appalachian Mountains:</strong> Much older, rounded mountains in the East. They were lifted when continents collided to form the supercontinent Pangea around 320 to 290 million years ago and once may have been as tall as the Himalayas ("The mountain range that crosses the most states," n.d.). Erosion has worn them down, and the highest peak today is Mount Mitchell in North Carolina at 6,684 feet (Encyclopaedia Britannica, n.d.).</li>
+              </ul>
+              <h3>How do they affect weather, water, and culture?</h3>
+              <p><strong>Weather:</strong> Mountains force moist air to rise, cool, and drop rain or snow on the windward side, leaving a dry "rain shadow" behind them. That is why western Washington is rainy while the land east of the Cascades is dry, and why much of Utah and Nevada is desert.</p>
+              <p><strong>Water:</strong> Mountain snowpack works like a giant reservoir. The Colorado River supplies water to about 40 million people, and 60% to 85% of its water starts as snowpack in Colorado, Utah, and Wyoming (Colorado Sun, n.d.). In Utah, the snowpack in the Wasatch is what fills our reservoirs every spring.</p>
+              <p><strong>Culture:</strong> Mountains shape how people live and play: ski resorts and national parks in the Rockies, hiking on the Appalachian Trail, and mining towns throughout the West.</p>
+              <h3>Did they provide protection or affect trade routes?</h3>
+              <p>Historically, the Appalachians were a natural barrier that kept early American settlement close to the Atlantic coast. The Cumberland Gap gave settlers a way west, and it was so important that armies fought over it in the Civil War (Encyclopaedia Britannica, n.d.). Today, highways and rail lines follow mountain passes, and goods still have to be moved over or around the ranges, but tunnels and interstates have made them much less of a barrier than they once were.</p>
+            </div>
+            <div>
+              <div class="chart" role="figure" aria-label="Bar chart comparing the highest peaks of U.S. mountain ranges">
+                <p class="chart-title">Highest peaks compared</p>
+                <p class="chart-sub">Elevation in feet above sea level</p>
+                <div class="bar-row" tabindex="0"><span class="bar-label">Mount Elbert (Rockies)</span><div class="bar-track"><div class="bar" style="width:78%"></div><span class="bar-val" style="left:78%">14,440</span></div><span class="tip">Mount Elbert, Colorado: highest peak in the Rocky Mountains</span></div>
+                <div class="bar-row" tabindex="0"><span class="bar-label">Mount Rainier (Cascades)</span><div class="bar-track"><div class="bar" style="width:77.8%"></div><span class="bar-val" style="left:77.8%">14,410</span></div><span class="tip">Mount Rainier, Washington: tallest Cascade volcano</span></div>
+                <div class="bar-row" tabindex="0"><span class="bar-label">Mount St. Helens, after 1980</span><div class="bar-track"><div class="bar" style="width:45.2%"></div><span class="bar-val" style="left:45.2%">8,363</span></div><span class="tip">Mount St. Helens lost 1,314 feet in the 1980 eruption (was 9,677 ft)</span></div>
+                <div class="bar-row" tabindex="0"><span class="bar-label">Mount Mitchell (Appalachians)</span><div class="bar-track"><div class="bar" style="width:36.1%"></div><span class="bar-val" style="left:36.1%">6,684</span></div><span class="tip">Mount Mitchell, North Carolina: highest peak in the Appalachians and east of the Mississippi</span></div>
+                <p class="chart-note">The young western mountains are more than twice as tall as the ancient, eroded Appalachians. Sources: see References. Chart by Caleb Carter.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. VOLCANOES -->
+        <article class="topic" id="t-volcanoes">
+          <p class="topic-num">Topic 5</p>
+          <h2>Volcanoes</h2>
+          <h3>Does the U.S. have significant volcanoes?</h3>
+          <p>Yes. Most are in Alaska, Hawaii, and the Cascades, plus Yellowstone in Wyoming. Some of the most important:</p>
+          <div class="table-scroll">
+            <table class="volcano-table">
+              <thead><tr><th>Volcano</th><th>Location</th><th>Type</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Mount St. Helens</td><td>Washington</td><td>Composite (stratovolcano)</td><td>The most active volcano in the Cascades. Formed above the Cascadia Subduction Zone (U.S. Geological Survey, n.d.-b).</td></tr>
+                <tr><td>Mount Rainier</td><td>Washington</td><td>Composite (stratovolcano)</td><td>Rated a "very high threat" volcano because of its eruptive history and nearby population ("Climbing the occasionally cataclysmic Cascades," n.d.).</td></tr>
+                <tr><td>Kīlauea</td><td>Hawaii</td><td>Shield</td><td>One of the most active volcanoes in the world. Gentle slopes are built by runny basalt lava flows.</td></tr>
+                <tr><td>Mauna Loa</td><td>Hawaii</td><td>Shield</td><td>The world's largest active volcano. Erupted from November 27 to December 10, 2022 (U.S. Geological Survey, n.d.-e).</td></tr>
+                <tr><td>Yellowstone</td><td>Wyoming</td><td>Caldera</td><td>Its last huge eruption 631,000 years ago formed a 30- by 45-mile caldera (National Park Service, n.d.-d).</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="topic-grid">
+            <div>
+              <h3>How do volcanoes impact the region?</h3>
+              <ul>
+                <li><strong>Fertile soil:</strong> Volcanic ash and weathered lava break down into rich soil, which is part of why Hawaii and the Pacific Northwest grow so many crops and forests.</li>
+                <li><strong>Tourism:</strong> Hawaiʻi Volcanoes, Yellowstone, and Mount St. Helens National Volcanic Monument draw visitors to see lava, geysers, and blast zones.</li>
+                <li><strong>New land:</strong> Kīlauea's 2018 eruption added 875 acres of new land to the Big Island (National Park Service, n.d.-a).</li>
+                <li><strong>Threats:</strong> Lava flows, ash, poisonous gases, and lahars (volcanic mudflows) threaten nearby towns, roads, and airplanes.</li>
+              </ul>
+              <h3>Historical eruptions and their effects</h3>
+              <p><strong>Mount St. Helens, 1980:</strong> On May 18, 1980, a magnitude 5.1 earthquake caused the north side of the volcano to collapse in the largest landslide ever witnessed. The landslide and sideways blast destroyed 230 square miles of forest and killed 57 people, including USGS geologist David Johnston (U.S. Geological Survey, 2005). The summit dropped from 9,677 feet to 8,363 feet (U.S. Geological Survey, 2000).</p>
+              <p><strong>Kīlauea, 2018:</strong> Lava flows in the Lower East Rift Zone destroyed 700 homes, displaced more than 2,000 people, and covered 30 miles of road (National Park Service, n.d.-a).</p>
+              <p><strong>Yellowstone:</strong> Its three caldera-forming eruptions were among the largest on Earth. The National Park Service says another eruption in the next few hundred years is not likely, and the most likely future activity would be slow lava flows (National Park Service, n.d.-d).</p>
+            </div>
+            <div>
+              <figure class="fig">
+                <div class="video-wrap">
+                  <iframe src="https://www.youtube-nocookie.com/embed/Ec30uU0G56U" title="Mount St. Helens: May 18, 1980 (USGS video)" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <figcaption>Video: <em>Mount St. Helens: May 18, 1980</em>, in which USGS scientists describe the eruption (U.S. Geological Survey, 2010).</figcaption>
+              </figure>
+              <figure class="fig">
+                <img src="https://commons.wikimedia.org/wiki/Special:FilePath/MSH80_eruption_mount_st_helens_05-18-80.jpg?width=1000" alt="Mount St. Helens erupting on May 18, 1980, with a tall ash column" loading="lazy" onerror="this.closest('figure').style.display='none'">
+                <figcaption>Mount St. Helens erupting on May 18, 1980. Photo: Austin Post, U.S. Geological Survey, public domain.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </article>
+
+        <p class="placeholder-panel ai-note"><strong>Note on AI use:</strong> I used Claude, an AI assistant made by Anthropic, as a springboard to find sources, organize my research, and draft parts of this page (Anthropic, 2026). I checked every fact against the sources listed on the <a href="#references">References</a> page, which has full APA citations.</p>
       </div>
     </section>
 
@@ -299,12 +560,42 @@
         <p>Sources are listed in alphabetical order in APA 7th edition format and updated each week.</p>
         <ul class="ref-list">
           <li>Alpha, T. R. (1983). <em>Albers conic equal-area fifty-state base map of the United States</em> (Open-File Report 83-850). U.S. Geological Survey. https://doi.org/10.3133/ofr83850</li>
+          <li>American Ceramic Society. (2026). <em>U.S. continues strengthening domestic supply chains to reduce reliance on foreign sources</em>. ACerS Bulletin. https://bulletin.ceramics.org/article/us-continues-strengthening-domestic-supply-chains-to-reduce-reliance-on-foreign-sources/</li>
+          <li>Anthropic. (2026). <em>Claude</em> (Opus 5.5 version) [Large language model]. https://claude.ai</li>
+          <li><em>Climbing the occasionally cataclysmic Cascades</em>. (n.d.). Eos. https://eos.org/features/climbing-the-occasionally-cataclysmic-cascades</li>
+          <li>Colorado Sun. (n.d.). <em>Yearly snow storms form an enormous frozen reservoir in Colorado, but climate change is threatening its future</em>. https://coloradosun.com/?p=367917</li>
+          <li>Encyclopaedia Britannica. (n.d.). <em>Cumberland Plateau</em>. https://www.britannica.com/EBchecked/topic/146419/Cumberland-Plateau</li>
           <li>Even in 1784 America, it was impossible to make a map without infuriating someone. (2014). <em>Smithsonian Magazine</em>. https://www.smithsonianmag.com/history/even-1784-america-it-was-impossible-make-map-without-infuriating-someone-180952700/</li>
+          <li>Federal Emergency Management Agency. (2021). <em>The National Earthquake Hazards Reduction Program (NEHRP) overview</em> [Fact sheet]. https://www.fema.gov/sites/default/files/documents/fema_nehrp-overview-factsheet_05-13-21.pdf</li>
+          <li>Federal Emergency Management Agency. (2024, October 21). <em>After the Great ShakeOut: Take the next step in earthquake readiness</em> [Press release]. https://www.fema.gov/press-release/20250602/after-great-shakeout-take-next-step-earthquake-readiness</li>
           <li>Library of Congress. (2001, July 23). <em>Library of Congress acquires only known copy of 1507 world map compiled by Martin Waldseemüller</em> [Press release]. https://www.loc.gov/item/prn-01-093/</li>
           <li>Maloney, W. (2014, June 11). <em>Rare map on display at Library scored some firsts</em>. Library of Congress Blog. https://blogs.loc.gov/loc/2014/06/rare-map-on-display-at-library-scored-some-firsts/</li>
-          <li>National Park Service. (n.d.). <em>Frequently asked questions</em>. Grand Canyon National Park. https://www.nps.gov/grca/faqs.htm</li>
+          <li><em>The mountain range that crosses the most states</em>. (n.d.). WorldAtlas. https://www.worldatlas.com/mountains/the-mountain-range-that-crosses-the-most-states.html</li>
+          <li>National Park Service. (n.d.-a). <em>2018 eruption and summit collapse</em>. Hawaiʻi Volcanoes National Park. https://www.nps.gov/havo/learn/nature/2018-eruption.htm</li>
+          <li>National Park Service. (n.d.-b). <em>Frequently asked questions</em>. Grand Canyon National Park. https://www.nps.gov/grca/faqs.htm</li>
+          <li>National Park Service. (n.d.-c). <em>Transform plate boundaries</em>. https://www.nps.gov/subjects/geology/plate-tectonics-transform-plate-boundaries.htm</li>
+          <li>National Park Service. (n.d.-d). <em>Volcano</em>. Yellowstone National Park. https://www.nps.gov/yell/learn/nature/volcano.htm</li>
+          <li>Notarianni, P. F. (n.d.). <em>Copper mining, the king of the Oquirrh Mountains</em>. Utah History to Go. https://historytogo.utah.gov/copper-mining-oquirrh/</li>
+          <li>Observatory of Economic Complexity. (n.d.). <em>Mineral products in United States</em>. https://oec.world/en/profile/bilateral-product/mineral-products/reporter/usa</li>
+          <li>Rio Tinto Kennecott. (n.d.). <em>Kennecott</em>. https://kennecott.com</li>
+          <li><em>Rocky Mountains</em>. (n.d.). New World Encyclopedia. https://www.newworldencyclopedia.org/entry/Rocky_Mountains</li>
+          <li><em>Scientists unravel diverse behaviors of Cascade volcanoes in subduction zone studies</em>. (n.d.). KOMO News. https://komonews.com/news/earthquake/scientists-unravel-diverse-behaviors-cascade-volcanoes-subduction-zone-studies-mount-saint-st-helens-volcano-nature-natural-disaster-lava-magma-big-one-earthquakes-usgs</li>
           <li>U.S. Census Bureau. (n.d.). <em>Territorial acquisitions map</em>. https://www.census.gov/programs-surveys/sis/resources/maps/territorial-acquisitions.html</li>
-          <li>U.S. Geological Survey. (n.d.). <em>Distances, extreme points, geographic centers</em>. https://www.usgs.gov/educational-resources/distances-extreme-points-geographic-centers</li>
+          <li>U.S. Department of the Interior. (2021, May 4). <em>Entire U.S. West Coast now has access to ShakeAlert earthquake early warning</em> [Press release]. https://content.govdelivery.com/accounts/USDOI/bulletins/2d790dd</li>
+          <li>U.S. Energy Information Administration. (n.d.). <em>Where our coal comes from</em>. https://www.eia.gov/energyexplained/index.php?page=coal_where</li>
+          <li>U.S. Geological Survey. (n.d.-a). <em>Distances, extreme points, geographic centers</em>. https://www.usgs.gov/educational-resources/distances-extreme-points-geographic-centers</li>
+          <li>U.S. Geological Survey. (n.d.-b). <em>Geology of Mount St. Helens National Volcanic Monument</em>. https://www.usgs.gov/geology-and-ecology-of-national-parks/geology-mount-st-helens-national-volcanic-monument</li>
+          <li>U.S. Geological Survey. (n.d.-c). <em>Historic earthquakes: Cascadia Subduction Zone, 1700 January 26</em>. https://webarchive.library.unt.edu/web/20090109025722/http://earthquake.usgs.gov/regional/states/events/1700_01_26.php</li>
+          <li>U.S. Geological Survey. (n.d.-d). <em>Historic earthquakes: Prince William Sound, Alaska, 1964 March 28 UTC</em>. https://webarchive.library.unt.edu/web/20080916024702/http://earthquake.usgs.gov/regional/states/events/1964_03_28.php</li>
+          <li>U.S. Geological Survey. (n.d.-e). <em>New open-access articles on the Mauna Loa 2022 eruption</em>. Hawaiian Volcano Observatory. https://www.usgs.gov/observatories/hvo/news/new-open-access-articles-mauna-loa-2022-eruption</li>
+          <li>U.S. Geological Survey. (2000). <em>Mount St. Helens—From the 1980 eruption to 2000</em> (Fact Sheet 036-00). https://pubs.usgs.gov/fs/2000/fs036-00/</li>
+          <li>U.S. Geological Survey. (2005). <em>Volcano Watch—25 years later: What have we learned from Mount St. Helens?</em> https://www.usgs.gov/news/volcano-watch-25-years-later-what-have-we-learned-mount-st-helens</li>
+          <li>U.S. Geological Survey. (2006). <em>Facing a great disaster: How the men and women of the U.S. Geological Survey responded to the 1906 "San Francisco" earthquake</em> (General Information Product 31). https://www.usgs.gov/publications/facing-great-disaster-how-men-and-women-us-geological-survey-responded-1906-san</li>
+          <li>U.S. Geological Survey. (2010, May 11). <em>Mount St. Helens: May 18, 1980</em> [Video]. YouTube. https://www.youtube.com/watch?v=Ec30uU0G56U</li>
+          <li>U.S. Geological Survey. (2014). <em>The 1964 Great Alaska Earthquake and tsunamis: A modern perspective and enduring legacies</em> (Fact Sheet 2014-3018). https://doi.org/10.3133/fs20143018</li>
+          <li>U.S. Geological Survey. (2026, February 6). <em>Value of U.S. mineral production rose last year, driven by precious metals prices</em> [News release]. https://www.usgs.gov/news/national-news-release/value-us-mineral-production-rose-last-year-driven-precious-metals-prices</li>
+          <li>Utah Department of Environmental Quality. (n.d.). <em>Natural Resource Damage (NRD) project: Kennecott Utah Copper LLC</em>. https://deq.utah.gov/businesses-facilities/natural-resource-damage-nrd-project-kennecott-utah-copper-llc</li>
+          <li>Utah Geological Survey. (n.d.). <em>The UGS response to the March 18, 2020 magnitude 5.7 Magna, Utah, earthquake and aftershock sequence</em>. Survey Notes. https://geology.utah.gov/map-pub/survey-notes/the-ugs-response-to-the-march-18-2020-magnitude-5-7-magna-utah-earthquake-and-aftershock-sequence/</li>
           <li>Waldseemüller, M. (1507). <em>Universalis cosmographia secundum Ptholomaei traditionem et Americi Vespucii aliorumque lustrationes</em> [Map]. Library of Congress. https://www.loc.gov/resource/g3200.ct000725</li>
         </ul>
       </div>
@@ -353,6 +644,12 @@
 
     document.querySelectorAll('.nav-link').forEach(button => {
       button.addEventListener('click', () => { history.replaceState(null, '', '#' + button.dataset.page); showPage(button.dataset.page); });
+    });
+    document.querySelectorAll('[data-scroll]').forEach(button => {
+      button.addEventListener('click', () => {
+        const target = document.getElementById(button.dataset.scroll);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
     });
     document.getElementById('brand-link').addEventListener('click', event => {
       event.preventDefault();
